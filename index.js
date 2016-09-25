@@ -58,12 +58,4 @@ class Total extends React.Component {
   }
 }
 
-// class Total extends React.Component{
-//
-//
-//   return <h2> {this.state.count} </h2>
-// }
 render(<App/>, document.querySelector('main'))
-
-// render(<App name='Lit Shit' />, document.querySelector('main'))
-// console.log('welcome to Lit Shit')
