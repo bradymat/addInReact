@@ -9,14 +9,27 @@ class App extends React.Component {
       counter2: 0
     }
   }
+  increment(counterName){
+    console.log('state', this.state[counterName]);
+    var state = {}
+    state[counterName] = this.state[counterName]+1
+    this.setState(state)
+  }
   render(){
     return (
       <div>
         <Greeter name='Brady'/>
         <Greeter name='Steve'/>
-        <Counter count={this.state.counter1}/>
-        <Counter count={this.state.counter2}/>
-        {/*<Total/>*/}
+        <Counter
+          name='counter1'
+          count={this.state.counter1}
+          increment={this.increment.bind(this)}/>
+        <Counter
+          name='counter2'
+          count={this.state.counter2}
+          increment={this.increment.bind(this)}/>
+        <Total
+          count={this.state.counter1 + this.state.counter2}/>
       </div>
     )
   }
@@ -29,12 +42,19 @@ class Greeter extends React.Component {
 }
 
 class Counter extends React.Component {
-  increaseCount () {
-    this.setState({count: this.state.count + 7})
+  handleClick () {
+    this.props.increment(this.props.name)
+    console.log('handleClick')
   }
   render() {
-    console.log(this.props);
-    return <h2> My count is: {this.props.count} </h2>
+    console.log( 'props', this.props);
+    return <h2 onClick={ () => this.handleClick()}> My count is: {this.props.count} </h2>
+  }
+}
+
+class Total extends React.Component {
+  render(){
+    return <h2> Total: {this.props.count}</h2>
   }
 }
 
