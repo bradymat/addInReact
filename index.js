@@ -12,7 +12,7 @@ class App extends React.Component {
   increment(counterName){
     console.log('state', this.state[counterName]);
     var state = {}
-    state[counterName] = this.state[counterName]+1
+    state[counterName] = this.state[counterName]+Math.floor(Math.random() * 10)
     this.setState(state)
   }
   render(){
